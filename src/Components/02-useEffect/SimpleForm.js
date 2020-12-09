@@ -1,26 +1,27 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Message } from './Message';
 
 import './effect.css';
 
 export const SimpleForm = () => {
-
-    useEffect(() => {
-        console.log('Eyeye');
-    }, []);
 
     const [stateForm, setFormState] = useState({
         name: '',
         email: ''
     });
 
-    useEffect(() => {
-        console.log('El stateForm cambio');
-    }, [stateForm]);
-
     const { name, email } = stateForm;
 
     useEffect(() => {
-        console.log('El email cambio');
+        // console.log('Eyeye');
+    }, []);
+
+    useEffect(() => {
+        // console.log('El stateForm cambio');
+    }, [stateForm]);
+
+    useEffect(() => {
+        // console.log('El email cambio');
     }, [email]);
 
     const handleInputChange = ({ target }) => {
@@ -40,6 +41,8 @@ export const SimpleForm = () => {
                 <input type="text" name="name" className="form-control" placeholder="Tu nombre porfavor !" autoComplete="off" value={ name } onChange={ handleInputChange }/>
                 <input type="text" name="email" className="form-control" placeholder="email@gmail.com" autoComplete="off" value={ email } onChange={ handleInputChange }/>
             </div>
+
+            { (name === '123') && <Message /> }
         </Fragment>
     )
 }
