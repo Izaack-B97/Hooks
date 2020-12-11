@@ -7,7 +7,7 @@ export const Message = () => {
 
     const moveMouse = (e) => {
         const coords = { x: e.x, y: e.y };
-        // setCoors(coords);
+        setCoors(coords);
         console.log(coords);
     }; 
 
