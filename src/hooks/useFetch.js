@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
-export const useFetch = (url) => {
-    
+export const useFetch = ( url ) => {
+
     const [state, setState] = useState({
         loading: true,
         error: null,
         data: null,
     });
+
+    const isMounted = useRef(true); // useRef nos servira para saber si un elemento ya ha sido desmontado
+
+    useEffect(() => {
+        
+        return () => {
+            isMounted.current = false;    
+        }
+        
+    }, [])
 
     useEffect(() => {
 
@@ -17,17 +27,20 @@ export const useFetch = (url) => {
             data: null
         });
 
-        fetch(url)
+        // setTimeout(() => {
+            fetch(url)
             .then( resp => resp.json() )
             .then( data => {
                 
-                setState({
-                    loading: false,
-                    error: null,
-                    data
-                });
-
+                if (isMounted) {
+                    setState({
+                        loading: false,
+                        error: null,
+                        data
+                    });
+                } 
             });
+        // }, 4000);
 
     }, [url]);
 
