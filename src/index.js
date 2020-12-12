@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { MultiplesCustomHooks } from './Components/03-examples/MultiplesCustomHooks';
+import { FocusScreen } from './Components/04-useRef/FocusScreen';
+// import { MultiplesCustomHooks } from './Components/03-examples/MultiplesCustomHooks';
 // import { FormWithCustomHook } from './Components/02-useEffect/FormWithCustomHook';
 // import { SimpleForm } from './Components/02-useEffect/SimpleForm';
 // import { CounterWithCustomHook } from './Components/01-useState/CounterWithCustomHook';
@@ -12,7 +13,7 @@ import './index.css';
 
 
 ReactDOM.render(
-  <MultiplesCustomHooks />,
+  <FocusScreen />,
   document.getElementById('root')
 );
 
