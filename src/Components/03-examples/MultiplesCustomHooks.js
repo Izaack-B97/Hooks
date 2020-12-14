@@ -16,6 +16,7 @@ export const MultiplesCustomHooks = () => {
             <hr />
 
             {
+                // Validacion ternaria
                 loading
                 ?
                     (

@@ -28,11 +28,11 @@ export const useFetch = ( url ) => {
         });
 
         // setTimeout(() => {
-            fetch(url)
+        fetch(url)
             .then( resp => resp.json() )
             .then( data => {
                 
-                if (isMounted) {
+                if (isMounted.current) {
                     setState({
                         loading: false,
                         error: null,
