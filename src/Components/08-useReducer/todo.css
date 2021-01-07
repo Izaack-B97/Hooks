@@ -1,0 +1,22 @@
+body {
+    padding: 70px;
+}
+
+p{
+    margin: 0px;
+    cursor: pointer;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.complete {
+    text-decoration: line-through;
+}
+
+.btn.btn-outline-primary{
+    width: 100%;
+}
