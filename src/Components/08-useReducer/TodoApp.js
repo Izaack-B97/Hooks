@@ -1,27 +1,35 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
+import { todoReducer } from './todoReducer'
+import { useForm } from '../../hooks/useForm' 
 
 import './todo.css'
-import { todoReducer } from './todoReducer'
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Aprender react',
-    done: false
-}]
+const init = () => {
+    return JSON.parse( localStorage.getItem('todos') ) || [];
+};
 
 export const TodoApp = () => {
 
-    const [ todos, dispatch ] = useReducer( todoReducer , initialState)
+    const [ todos, dispatch ] = useReducer( todoReducer , [], init);
+    const [ { description }, handleInputChange, reset ] = useForm({ description: '' });
+    
+    
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify( todos )) // localstorage solo guarda strings
+    }, [ todos ]);
 
-    console.log( todos );
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Nueva tarea')
+
+        if ( description.trim().length <= 1 ) {
+            return;
+        }
+
 
         const newTodo = {
             id: new Date().getTime(),
-            desc: 'Nueva tarea',
+            desc: description,
             done: false
         }
 
@@ -31,6 +39,8 @@ export const TodoApp = () => {
         }
 
         dispatch( action ); // Es una funcion que sabe que action ejecutar en el reducer
+        reset();
+    
     }
 
     return (
@@ -59,7 +69,7 @@ export const TodoApp = () => {
                     <hr />
                     
                     <form className="form-group" onSubmit={ handleSubmit }>
-                        <input type="text" className="form-control"  placeholder="Aprender..." autoComplete="off"/> 
+                        <input name="description" type="text" className="form-control"  placeholder="Aprender..." autoComplete="off" onChange={ handleInputChange } value={ description }/> 
                         <button type="submit" className="btn btn-outline-primary mt-1 btn-block">Agregar</button>
                     </form>
                 </div>
