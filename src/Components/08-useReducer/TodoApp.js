@@ -19,7 +19,7 @@ export const TodoApp = () => {
     }, [ todos ]);
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = ( e ) => {
         e.preventDefault();
 
         if ( description.trim().length <= 1 ) {
@@ -43,6 +43,25 @@ export const TodoApp = () => {
     
     }
 
+    const handleDelete = ( id ) => {
+        const action = {
+            type: 'delete',
+            payload: id
+        }
+
+        dispatch( action );
+    }
+
+    const handleToggle = ( id ) => {
+        console.log( id )
+        const action = {
+            type: 'toggle',
+            payload: id
+        }
+
+        dispatch( action );
+    }
+
     return (
         <div>
             <h1>TodoApp ( { todos.length } )</h1>
@@ -55,10 +74,10 @@ export const TodoApp = () => {
                         {
                             todos.map((todo, i) => (
                                 <li className="list-group-item" key={ todo.id }>
-                                    <p className="text-center">
+                                    <p className={ todo.done && 'complete' } onClick={ () => handleToggle( todo.id ) }>
                                         {i + 1} . -{ todo.desc }
                                     </p>
-                                    <button className="btn btn-danger ">Borrar</button>
+                                    <button className="btn btn-danger" onClick={ () => handleDelete( todo.id ) }>Borrar</button>
                                 </li>
                             ))
                         }
@@ -70,7 +89,7 @@ export const TodoApp = () => {
                     
                     <form className="form-group" onSubmit={ handleSubmit }>
                         <input name="description" type="text" className="form-control"  placeholder="Aprender..." autoComplete="off" onChange={ handleInputChange } value={ description }/> 
-                        <button type="submit" className="btn btn-outline-primary mt-1 btn-block">Agregar</button>
+                        <button type="submit" className="btn btn-outline-primary mt-3 btn-block">Agregar</button>
                     </form>
                 </div>
             </div>
