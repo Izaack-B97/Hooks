@@ -18,7 +18,6 @@ export const TodoApp = () => {
         localStorage.setItem('todos', JSON.stringify( todos )) // localstorage solo guarda strings
     }, [ todos ]);
 
-
     const handleDelete = ( id ) => {
         const action = {
             type: 'delete',
