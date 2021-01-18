@@ -20,6 +20,6 @@ export const Navbar = () => {
                     </ul>
                 </div>
             </div>
-            </nav>
+        </nav>
     )
 }
