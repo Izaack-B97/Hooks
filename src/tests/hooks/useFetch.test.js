@@ -38,7 +38,6 @@ describe('Pruebas en useFetch ', () => {
         expect( loading ).toBe( false );
         expect( data ).toBe( null );
         expect( error ).toBe('No se pudo cargar la data')
-
     });
 
 });
